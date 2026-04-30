@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="SistemaTallerAutomorizWPF.View.AppointmentsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:cc="clr-namespace:SistemaTallerAutomorizWPF.CustomControls"
+             xmlns:local="clr-namespace:SistemaTallerAutomorizWPF.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- 🗓️ Encabezado -->
+        <StackPanel Orientation="Vertical" Margin="0 0 0 20">
+            <TextBlock Text="📅 Agenda" FontSize="26" FontWeight="Bold" Foreground="DarkSlateGray"/>
+            <TextBlock Text="Citas programadas y mantenimientos pendientes" FontSize="14" Foreground="Gray"/>
+        </StackPanel>
+
+        <!-- Contenido -->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- 🔍 Filtros y nuevo evento -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                <DatePicker Width="150" Margin="0 0 10 0" />
+                <TextBox Width="200" Margin="0 0 10 0" Text="Buscar por cliente o placa..." />
+                <Button Content="➕ Nueva cita" Background="#9FA324" Foreground="White" Padding="10,5" Cursor="Hand"/>
+            </StackPanel>
+
+            <!-- 🗂️ Tabla de eventos -->
+            <DataGrid Grid.Row="1"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      Margin="0"
+                      RowHeight="35"
+                      HeadersVisibility="Column"
+                      ColumnHeaderHeight="40"
+                      GridLinesVisibility="None"
+                      SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Cliente" Binding="{Binding NombreCliente}" Width="*" />
+                    <DataGridTextColumn Header="Placa" Binding="{Binding Placa}" Width="*" />
+                    <DataGridTextColumn Header="Servicio" Binding="{Binding Servicio}" Width="*" />
+                    <DataGridTextColumn Header="Fecha" Binding="{Binding FechaCita, StringFormat=\{0:dd/MM/yyyy\}}" Width="*" />
+                    <DataGridTextColumn Header="Hora" Binding="{Binding Hora}" Width="*" />
+                    <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="*" />
+                    <DataGridTemplateColumn Header="Acciones" Width="150">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Content="✏️" Margin="5" ToolTip="Editar" />
+                                    <Button Content="🗑️" Margin="5" ToolTip="Eliminar" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

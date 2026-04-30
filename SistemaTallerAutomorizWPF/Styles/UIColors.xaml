@@ -1,0 +1,97 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <!-- LOGINVIEW FONDO PLANO -->
+    <SolidColorBrush x:Key="loginBackColor" Color="#A3A833"/>
+    <!-- Verde oliva plano -->
+
+
+    <!-- FONDOS DE PÁGINAS GENERALES -->
+    <Color x:Key="PrimaryBackColor1">#F6F6F0</Color>
+    <!-- Casi blanco, cálido (base general) -->
+    <Color x:Key="PrimaryBackColor2">#EFEFE5</Color>
+    <!-- Derivado del hueso para fondo suave -->
+
+    <Color x:Key="secondaryBackColor1">#F1F1DC</Color>
+    <!-- Alternativa suave -->
+    <Color x:Key="secondaryBackColor2">#EDEDD2</Color>
+    <!-- Hover o contraste sutil -->
+
+    <!-- BORDES / ESTRUCTURA -->
+    <Color x:Key="WinBorderColor1">#A6C46C</Color>
+    <!-- Principal, más suave -->
+    <Color x:Key="WinBorderColor2">#B9D17D</Color>
+    <!-- Clarito -->
+    <Color x:Key="WinBorderColor3">#FFFFFF</Color>
+    <!-- Blanco nieve -->
+
+    <!-- SOLID BRUSHES BASE -->
+
+    <!-- NEGROS / TEXTOS -->
+    <SolidColorBrush x:Key="Color1" Color="#000000"/>
+    <!-- Texto fuerte -->
+    <SolidColorBrush x:Key="Color2" Color="#1A1A1A"/>
+    <!-- Subtexto oscuro -->
+
+    <!-- VERDES / PALABRA CLAVE VISUAL -->
+    <SolidColorBrush x:Key="Color3" Color="#B2CC7A"/>
+    <!-- Verde principal -->
+    <SolidColorBrush x:Key="Color4" Color="#94AA2E"/>
+    <!-- Verde medio fuerte -->
+    <SolidColorBrush x:Key="Color5" Color="#FFFFFF"/>
+    <!-- Texto blanco -->
+
+    <!-- VERDES SUAVES / HOVER Y SECUNDARIOS -->
+    <SolidColorBrush x:Key="Color6" Color="#D0E7AA"/>
+    <!-- Hover oliva pastel -->
+    <SolidColorBrush x:Key="Color7" Color="#A6C46C"/>
+    <!-- Verde intermedio -->
+    <SolidColorBrush x:Key="Color8" Color="#E5F1C6"/>
+    <!-- Verde más suave alterno -->
+
+    <!-- BASE NEUTRA / MARRÓN SUAVE / HUESO -->
+    <SolidColorBrush x:Key="Color9" Color="#F3EFD8"/>
+    <!-- Fondo tarjetas -->
+    <SolidColorBrush x:Key="Color10" Color="#444444"/>
+    <!-- Texto gris oscuro -->
+
+    <!-- TITULARES -->
+    <SolidColorBrush x:Key="tittleColor1" Color="#000000"/>
+    <!-- Título principal -->
+    <SolidColorBrush x:Key="tittleColor2" Color="#1A1A1A"/>
+    <!-- Subtítulo fuerte -->
+    <SolidColorBrush x:Key="tittleColor3" Color="#333333"/>
+    <!-- Subtítulo suave -->
+
+    <!-- TEXTOS SIMPLES -->
+    <SolidColorBrush x:Key="plainTextColor1" Color="#333333"/>
+    <SolidColorBrush x:Key="plainTextColor2" Color="#666666"/>
+    <SolidColorBrush x:Key="plainTextColor3" Color="#999999"/>
+
+    <!-- PANELES Y ESTADOS -->
+    <SolidColorBrush x:Key="panelColor" Color="#B9D17D"/>
+    <!-- Color base del panel -->
+    <SolidColorBrush x:Key="panelOverColor" Color="#CDE8A3"/>
+    <!-- Hover -->
+    <SolidColorBrush x:Key="panelActiveColor" Color="#94AA2E"/>
+    <!-- Activo -->
+
+
+    <!-- BOTONES PRINCIPALES -->
+    <SolidColorBrush x:Key="buttonPrimaryColor" Color="#A3A833"/>
+    <!-- Verde oliva mostaza -->
+
+    <!-- BOTONES HOVER -->
+    <SolidColorBrush x:Key="buttonPrimaryHoverColor" Color="#BDC138"/>
+    <!-- Hover más claro -->
+
+    <!-- BOTONES ACTIVOS / PRESIONADOS -->
+    <SolidColorBrush x:Key="buttonPrimaryActiveColor" Color="#7F821F"/>
+    <!-- Más oscuro, para clic -->
+
+    <!-- TEXTO EN BOTONES -->
+    <SolidColorBrush x:Key="buttonTextColor" Color="#FFFFFF"/>
+    <!-- Blanco para buen contraste -->
+
+</ResourceDictionary>

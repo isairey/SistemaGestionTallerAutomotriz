@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="SistemaTallerAutomorizWPF.View.PartsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SistemaTallerAutomorizWPF.View"
+             xmlns:cc="clr-namespace:SistemaTallerAutomorizWPF.CustomControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Filtro -->
+            <RowDefinition Height="*" />
+            <!-- DataGrid -->
+            <RowDefinition Height="Auto" />
+            <!-- Detalles -->
+        </Grid.RowDefinitions>
+
+        <!-- Filtro -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+            <cc:PlaceHolderforTextBox x:Name="BuscarTextBox" 
+                                      Width="200" Margin="0 0 10 0" 
+                                      PlaceHolder="Marca del vehívulo"/>
+                <Button Content="Buscar" Width="100" Click="BuscarBtn_Click" />
+        </StackPanel>
+
+        <!-- DataGrid -->
+        <DataGrid x:Name="OrdenDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" 
+                  ItemsSource="{Binding OrdenesList}" SelectedItem="{Binding OrdenSeleccionada, Mode=TwoWay}" 
+                  SelectionMode="Single" ColumnHeaderHeight="30" FontSize="13">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Cliente" Binding="{Binding NombreCliente}" Width="*" />
+                <DataGridTextColumn Header="Vehículo" Binding="{Binding MarcaVehiculo}" Width="*" />
+                <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="*" />
+                <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat=C}" Width="*" />
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha, StringFormat=dd/MM/yyyy}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Detalles de la orden seleccionada -->
+        <StackPanel Grid.Row="2" Margin="0 10 0 0">
+            <TextBlock Text="Detalles de la Orden:" FontWeight="Bold" FontSize="16" Margin="0 0 0 10"/>
+            <TextBlock Text="{Binding OrdenSeleccionada.IdOrden, StringFormat=ID: {0}}" FontSize="14" />
+            <TextBlock Text="{Binding OrdenSeleccionada.Estado, StringFormat=Estado: {0}}" FontSize="14" />
+            <TextBlock Text="{Binding OrdenSeleccionada.Total, StringFormat=Total: {0:C}}" FontSize="14" />
+            <TextBlock Text="{Binding OrdenSeleccionada.Fecha, StringFormat=Fecha: {0:dd/MM/yyyy}}" FontSize="14" />
+        </StackPanel>
+    </Grid>
+</UserControl>

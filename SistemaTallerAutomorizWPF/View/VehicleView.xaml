@@ -1,0 +1,159 @@
+﻿<UserControl x:Class="SistemaTallerAutomorizWPF.View.VehicleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SistemaTallerAutomorizWPF.View"
+             xmlns:cc="clr-namespace:SistemaTallerAutomorizWPF.CustomControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Buscador -->
+            <RowDefinition Height="*" />
+            <!-- DataGrid -->
+            <RowDefinition Height="*" />
+            <!-- Formulario -->
+            <RowDefinition Height="Auto"/>
+            <!-- Botones -->
+        </Grid.RowDefinitions>
+       
+
+        <!-- 🔍 Filtro de búsqueda -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+            <cc:PlaceHolderforTextBox x:Name="BuscarTextBox"
+                                   Width="200"
+                                   Text="Buscar por dueño o placa"
+                                   Margin="0 5 10 0"/>
+            <Button Content="Buscar"
+                Width="100"
+                Style="{StaticResource AnimatedButtonStyle}"
+                Click="BuscarVehiculoBtn_Click"/>
+        </StackPanel>
+        
+
+        <!-- 🧾 DataGrid con lista de vehículos -->
+        <DataGrid x:Name="VehicleDataGrid"
+              Grid.Row="1"
+              AutoGenerateColumns="False"
+              IsReadOnly="True"
+              CanUserAddRows="False"
+              SelectionMode="Single"
+              Margin="0 0 0 10"
+              HeadersVisibility="Column"
+              ColumnHeaderHeight="35"
+              FontSize="13"
+              SelectionChanged="VehicleDataGrid_SelectionChanged"
+              ItemsSource="{Binding VehiculosList}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Dueño" Binding="{Binding NombreCliente}" Width="*" />
+                <DataGridTextColumn Header="Marca" Binding="{Binding MarcaVehiculo}" Width="*" />
+                <DataGridTextColumn Header="Modelo" Binding="{Binding Modelo}" Width="*" />
+                <DataGridTextColumn Header="Año" Binding="{Binding Anio}" Width="*" />
+                <DataGridTextColumn Header="Placa" Binding="{Binding Placa}" Width="*" />
+                <DataGridTextColumn Header="Color" Binding="{Binding Color}" Width="*" />
+                <DataGridTextColumn Header="Fecha Registro" Binding="{Binding FechaRegistro, StringFormat='{}{0:dd/MM/yyyy}'}" Width="*" />
+            </DataGrid.Columns>
+            
+            
+        </DataGrid>
+
+        <!-- Formulario de datos -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Campos de texto a la izquierda -->
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" MaxHeight="170">
+                <TextBlock Text="Detalles del Vehículo:"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Margin="0,0,0,10"/>
+                
+
+                <cc:PlaceHolderforTextBox x:Name="MarcaTextBox"
+                                      PlaceHolder="Marca del vehívulo"
+                                      Width="250"
+                                      Margin="5"/>
+
+                <cc:PlaceHolderforTextBox x:Name="ModeloTextBox"
+                                      PlaceHolder="Modelo del vehículo"
+                                      Width="250"
+                                      Margin="5" TextChanged="MarcaTextBox_TextChanged"/>
+
+                <cc:PlaceHolderforTextBox x:Name="AñoTextBox"
+                                      PlaceHolder="Año"
+                                      Width="250"
+                                      Margin="5" TextChanged="AñoTextBox_TextChanged"/>
+
+                <cc:PlaceHolderforTextBox x:Name="PlacaTextBox"
+                                      PlaceHolder="Placa"
+                                      Width="250"
+                                      Margin="5"/>
+
+                <cc:PlaceHolderforTextBox x:Name="ColorTextBox"
+                                      PlaceHolder="Color"
+                                      Width="250"
+                                      Margin="5"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="1" Margin="20 0 0 0">
+                <TextBlock Text="💡 Tips de llenado"
+               FontWeight="Bold"
+               FontSize="16"
+               Margin="0 0 0 10"/>
+
+                <TextBlock Text="Marca: Debe coincidir con un cliente ya registrado"
+               TextWrapping="Wrap" Margin="0 0 0 5"/>
+                <TextBlock Text="Año: Entre 1900 y el actual"
+               TextWrapping="Wrap" Margin="0 0 0 5"/>
+                <TextBlock Text="Placa: Formato Dominicano" 
+               TextWrapping="Wrap" Margin="0 0 0 5"/>
+
+                <ComboBox x:Name="ClienteComboBox"
+                            DisplayMemberPath="NameClient"
+                            SelectedValuePath="Id"
+                            Width="200"
+                            HorizontalAlignment="Left" SelectionChanged="ClienteComboBox_SelectionChanged" />
+            </StackPanel>
+
+
+        </Grid>
+
+
+        <!-- Botones CRUD -->
+        <StackPanel Grid.Row="3"
+                Orientation="Horizontal"
+                HorizontalAlignment="Left"
+                Margin="10 10 0 0">
+            <Button x:Name="AgregarVehiculoBtn"
+                    Content="Agregar"
+                    Width="100"
+                    Style="{StaticResource AnimatedButtonStyle}"
+                    Click="AgregarVehiculoBtn_Click"
+                    Margin="0 0 5 0"/>
+
+            <Button x:Name="EditarVehiculoBtn"
+                    Content="Editar"
+                    Width="100"
+                    Style="{StaticResource AnimatedButtonStyle}"
+                    Click="EditarVehiculoBtn_Click"
+                    Margin="0 0 5 0"/>
+
+            <Button x:Name="ExportarExcelBtn"
+                    Content="Exportar a Excel"
+                    Width="120"
+                    Style="{StaticResource AnimatedButtonStyle}"
+                    Click="ExportarExcelBtn_Click"
+                    Margin="10 0 0 0" />
+        </StackPanel>
+    </Grid>
+</UserControl>

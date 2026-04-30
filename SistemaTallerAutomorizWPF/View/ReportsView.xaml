@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="SistemaTallerAutomorizWPF.View.ReportsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SistemaTallerAutomorizWPF.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- 📄 Encabezado -->
+        <StackPanel Orientation="Vertical" Margin="0 0 0 20">
+            <TextBlock Text="📄 Reportes del Sistema" FontSize="26" FontWeight="Bold" Foreground="DarkSlateGray"/>
+            <TextBlock Text="Consulta los datos y métricas importantes del taller" FontSize="14" Foreground="Gray"/>
+        </StackPanel>
+
+        <!-- 🔍 Filtros -->
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 20" Grid.Row="1" HorizontalAlignment="Left">
+            <TextBlock Text="Desde:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <DatePicker Width="150" Margin="0 10 20 0"/>
+            <TextBlock Text="Hasta:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <DatePicker Width="150" Margin="0 10 20 0"/>
+            <Button Content="📊 Generar Reporte" Background="#9FA324" Foreground="White" Padding="10,5" Cursor="Hand"/>
+        </StackPanel>
+
+        <!-- 📋 Tabla de Resultados -->
+        <DataGrid Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  Margin="0"
+                  RowHeight="35"
+                  HeadersVisibility="Column"
+                  ColumnHeaderHeight="40"
+                  GridLinesVisibility="None"
+                  SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tipo de Servicio" Binding="{Binding TipoServicio}" Width="*" />
+                <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="*" />
+                <DataGridTextColumn Header="Total Generado" Binding="{Binding TotalGenerado, StringFormat='RD$ {0:N2}'}" Width="*" />
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha, StringFormat='dd/MM/yyyy'}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

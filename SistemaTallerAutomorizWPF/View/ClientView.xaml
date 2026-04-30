@@ -1,0 +1,188 @@
+﻿<UserControl x:Class="SistemaTallerAutomorizWPF.View.ClientView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SistemaTallerAutomorizWPF.View"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:oxy="http://oxyplot.org/wpf" 
+             xmlns:viewmodels="clr-namespace:SistemaTallerAutomorizWPF.ViewModels" 
+             xmlns:cc="clr-namespace:SistemaTallerAutomorizWPF.CustomControls"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             d:DataContext="{d:DesignInstance Type=viewmodels:ClientesViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1300">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Top"
+                        Grid.Column="0">
+                <fa:IconImage Icon="Search" Height="20" Foreground="{StaticResource plainTextColor3}"/>
+
+                <TextBox Text="Buscar..."
+                         GotFocus="BuscarTextBox_GotFocus"
+                         Name="BuscarTextBox"
+                         LostFocus="BuscarTextBox_LostFocus"
+                         KeyDown="BuscarTextBox_KeyDown"
+                         TextChanged="BuscarTextBox_TextChanged"
+                         FontSize="13"
+                         Height="24"
+                         Width="300"
+                         Background="Transparent"
+                         FontWeight="Medium"
+                         FontFamily="Montserrat"
+                         Foreground="{StaticResource plainTextColor3}"
+                         CaretBrush="{StaticResource plainTextColor3}"
+                         BorderBrush="{StaticResource plainTextColor3}"
+                         BorderThickness="0,0,0,1"
+                         VerticalAlignment="Center"
+                         Margin="5,5,0,0" />
+            </StackPanel>
+
+            <Button Grid.Column="1"
+                    Command="{Binding LoginCommand}"
+                    Content="Buscar"
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    Foreground="White"
+                    VerticalAlignment="Top" Click="Button_Click">
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="{StaticResource buttonPrimaryColor}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Height="30"
+                                            CornerRadius="15"
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                          HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="306*"/>
+                <ColumnDefinition Width="19*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Crud CLientes-->
+            <StackPanel Orientation="Vertical" Margin="10">
+
+    <TextBlock Text="Formulario Cliente" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
+
+    <cc:PlaceHolderforTextBox x:Name="NombreTextBox" PlaceHolder="Nombre del Cliente" Margin="0,5"/>
+    <cc:PlaceHolderforTextBox x:Name="EmailTextBox" PlaceHolder="Email" Margin="0,5"/>
+                <cc:PlaceHolderforTextBox x:Name="VehiculoTextBox" PlaceHolder="Vehículo" Margin="0,5"/>
+                <cc:PlaceHolderforTextBox x:Name="PlacaTextBox" PlaceHolder="Placa" Margin="0,5"/>
+                <cc:PlaceHolderforTextBox x:Name="DeudasTextBox" PlaceHolder="Deudas" Margin="0,5"/>
+
+    <StackPanel Orientation="Horizontal" Margin="0,10">
+        <Button Style="{StaticResource AnimatedButtonStyle}" x:Name="AgregarClienteBtn" Content="Agregar" Click="AgregarCliente_Click" Width="100" Margin="5"/>
+        <Button Style="{StaticResource EditarButtonStyle}" x:Name="EditarClienteBtn" Content="Modo Edición" Click="ActivarModoEdicion_Click" Width="100" Margin="5"/>
+        <Button Style="{StaticResource AnimatedButtonStyle}" x:Name="EliminarClienteBtn" Content="Eliminar" Click="EliminarCliente_Click" Width="100" Margin="5"/>
+        <Button Style="{StaticResource AnimatedButtonStyle}" x:Name="GuardarCambiosBtn" Content="Guardar Cambios" Margin="5" Click="GuardarCambios_Click"/>
+                </StackPanel>
+                
+
+
+            </StackPanel>
+
+            
+            
+        </Grid>
+
+        <Grid Grid.Row="2"  Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Encabezado -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                <Button
+                    Content="Exportar a Excel" Padding="15,5"
+                    Background="#DEE33E" Foreground="Black"
+                    FontWeight="Bold" Cursor="Hand" 
+                    BorderThickness="0" Width="150" Height="35"
+                    Margin="0,0,10,0" Click="Button_Click_2" />
+
+                <!-- DatePicker para elegir la fecha del log -->
+                <DatePicker x:Name="FechaLogDatePicker"
+                SelectedDate="{x:Static sys:DateTime.Today}"
+                Width="160" Height="35"
+                Margin="0,0,10,0"
+                VerticalAlignment="Center"
+                FontFamily="Montserrat"
+                FontSize="13"/>
+
+                <!-- CheckBox para incluir eliminados -->
+                <CheckBox x:Name="IncluirEliminadosCheckBox"
+              Content="Incluir eliminados"
+              VerticalAlignment="Center"
+              FontFamily="Montserrat"
+              FontSize="13"
+              Margin="0,0,10,0"/>
+
+                <!-- Botón de exportar -->
+                <Button HorizontalAlignment="Right" 
+            Content="Exportar Log Diario (.txt)" 
+            Background="#DEE33E" Foreground="Black"
+            FontWeight="Bold" Cursor="Hand"
+            Padding="15,5"
+            BorderThickness="0" Width="170" Height="35"
+            Click="ExportarLogDiario_Click" />
+            </StackPanel>
+
+            <!-- Tabla de clientes -->
+            <DataGrid x:Name="ClientDataGrid" Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  RowHeaderWidth="0"
+                  ColumnHeaderHeight="35"
+                  RowHeight="35"
+                  Background="White"
+                  GridLinesVisibility="Vertical"
+                  BorderBrush="#E0E0E0"
+                  BorderThickness="1"
+                  FontFamily="Montserrat"
+                  FontSize="13"
+                  Margin="0" SelectionChanged="ClientDataGrid_SelectionChanged">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="ID" Width="0" Visibility="Collapsed"/>
+                    <DataGridTextColumn Header="Nombre del Cliente" Binding="{Binding NameClient}" Width="*"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                    <DataGridTextColumn Header="Vehículo" Binding="{Binding Vehicle}" Width="*"/>
+                    <DataGridTextColumn Header="Placa" Binding="{Binding Placa}" Width="*"/>
+                    <DataGridTextColumn Header="Deudas" Binding="{Binding Debts}" Width="*" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+    </Grid>
+</UserControl>
