@@ -60,8 +60,6 @@ El sistema SITAUTO responde a la necesidad de los talleres mecánicos de digital
 4. **Visualización de datos** en DataGrids con filtros y acciones.
 5. **Interfaz limpia**, con animaciones suaves, colores amigables y accesibilidad.
 
-> 📸 *Capturas de pantalla disponibles en la carpeta `/Capturas` del repositorio.*
-
 ---
 
 ## 🧱 Documentación Técnica
@@ -85,4 +83,4 @@ El sistema SITAUTO responde a la necesidad de los talleres mecánicos de digital
 
 1. Clonar el repositorio:
    ```bash
-   git clone https://github.com/tu_usuario/sitauto.git
+   git clone https://github.com/isairey/SistemaGestionTallerAutomotriz.git
